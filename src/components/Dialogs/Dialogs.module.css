@@ -1,0 +1,27 @@
+.dialogs {
+  display: grid;
+  grid-template-columns: 2fr 10fr;
+  padding: 10px;
+}
+
+.dialog {
+  margin-bottom: 5px;
+} 
+
+.dialog a {
+  margin-left: 10px;
+}
+
+.dialog img {
+  width: 15px
+}
+
+.inputField textarea {
+  height: 30px;
+}
+
+.messages {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}

@@ -1,0 +1,13 @@
+.item {
+  color: pink;
+  margin-bottom: 10px;
+}
+
+.item span {
+  color: white;
+}
+
+.item img {
+  width: 20px;
+  margin-right: 10px;
+}

@@ -1,0 +1,11 @@
+.header {
+  grid-area: h; /* псевдоним блока для грида */
+  background: #36465D;
+  background-repeat: space;
+}
+
+.header img {
+  width: 40px;
+  margin-top: 10px;
+  margin-left: 10px;
+}

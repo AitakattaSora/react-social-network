@@ -1,0 +1,9 @@
+.posts {
+  margin-top: 20px;
+}
+
+textarea {
+  margin-top: 10px;
+  resize: none;
+  padding: 10px;
+}
