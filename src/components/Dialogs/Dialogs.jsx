@@ -1,40 +1,37 @@
 import React from 'react';
-import s from './Dialogs.module.css';
+import styles from './Dialogs.module.css';
 import Message from './Message/Message.jsx';
 import DialogItem from './DialogItem/DialogItem';
-import { sendMessage, updateInputField } from './../../redux/dialogs-reducer';
 
 const Dialogs = (props) => {
-  let state = props.dialogsPage;
-
-  let dialogsElements = state.dialogs.map((dialog) => (
+  const dialogsElements = props.dialogs.map((dialog) => (
     <DialogItem id={dialog.id} name={dialog.name} />
   ));
 
-  let messagesElements = state.messages.map((msg) => {
+  const messagesElements = props.messages.map((msg) => {
     return <Message message={msg.message} />;
   });
 
-  let onClickHandler = () => {
-    props.dispatch(sendMessage());
+  const onClickHandler = () => {
+    props.onButtonClick();
   };
 
-  let onChangeHandler = (event) => {
+  const onChangeHandler = (event) => {
     let message = event.target.value;
-    props.dispatch(updateInputField(message));
+    props.onInputChange(message);
   };
 
   return (
-    <div className={s.dialogs}>
-      <div className={s.dialogsItems}>{dialogsElements}</div>
-      <div className={s.messages}>
+    <div className={styles.dialogs}>
+      <div className={styles.dialogsItems}>{dialogsElements}</div>
+      <div className={styles.messages}>
         <div>{messagesElements}</div>
-        <div className={s.inputField}>
+        <div className={styles.inputField}>
           <textarea
-            value={props.dialogsPage.newMessageText}
+            value={props.newMessageText}
             onChange={onChangeHandler}
             placeholder='Start writing message...'
-            cols='30'
+            cols='50'
             rows='10'
           ></textarea>
           <div>

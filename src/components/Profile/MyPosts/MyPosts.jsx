@@ -1,23 +1,22 @@
 import React from 'react';
-import s from './MyPosts.module.css';
+import styles from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
-import { updateInputField, addPost } from '../../../redux/profile-reducer';
 
 const MyPosts = (props) => {
-  let postsElements = props.posts.map((post) => {
+  const postsElements = props.posts.map((post) => {
     return <Post message={post.post} likes={post.likesCount} />;
   });
 
-  let onClickHandler = () => {
+  const onClickHandler = () => {
     if (props.newPostText === '') {
       return alert('Post cannot be empty');
     }
-    props.dispatch(addPost());
+    props.onButtonClick();
   };
 
-  let onChangeHandler = (event) => {
-    let post = event.target.value;
-    props.dispatch(updateInputField(post));
+  const onChangeHandler = (event) => {
+    const text = event.target.value;
+    props.onInputChange(text);
   };
 
   return (
@@ -35,7 +34,7 @@ const MyPosts = (props) => {
       <div>
         <button onClick={onClickHandler}>Add post</button>
       </div>
-      <div className={s.posts}>{postsElements}</div>
+      <div className={styles.posts}>{postsElements}</div>
     </div>
   );
 };

@@ -1,5 +1,5 @@
 const ADD_POST = 'ADD_POST';
-const UPDATE_INPUT_FIELD = 'UPDATE_INPUT_FIELD';
+const UPDATE_POST_INPUT_FIELD = 'UPDATE_POST_INPUT_FIELD';
 
 const initialState = {
   posts: [
@@ -22,7 +22,7 @@ const profileReducer = (state = initialState, action) => {
       state.newPostText = '';
       return state;
 
-    case UPDATE_INPUT_FIELD:
+    case UPDATE_POST_INPUT_FIELD:
       state.newPostText = action.body;
       return state;
     default:
@@ -31,8 +31,8 @@ const profileReducer = (state = initialState, action) => {
 };
 
 export const addPost = () => ({ type: ADD_POST });
-export const updateInputField = (text) => ({
-  type: UPDATE_INPUT_FIELD,
+export const updatePostInputField = (text) => ({
+  type: UPDATE_POST_INPUT_FIELD,
   body: text,
 });
 

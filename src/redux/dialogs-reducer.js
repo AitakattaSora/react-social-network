@@ -1,5 +1,5 @@
 const SEND_MESSAGE = 'SEND_MESSAGE';
-const UPDATE_INPUT_FIELD = 'UPDATE_INPUT_FIELD';
+const UPDATE_DIALOG_INPUT_FIELD = 'UPDATE_DIALOG_INPUT_FIELD';
 
 const initialState = {
   dialogs: [
@@ -19,7 +19,7 @@ const initialState = {
 
 const dialogsReducer = (state = initialState, action) => {
   switch (action.type) {
-    case UPDATE_INPUT_FIELD:
+    case UPDATE_DIALOG_INPUT_FIELD:
       state.newMessageText = action.body;
       return state;
 
@@ -38,8 +38,8 @@ const dialogsReducer = (state = initialState, action) => {
 
 export const sendMessage = () => ({ type: SEND_MESSAGE });
 
-export const updateInputField = (text) => ({
-  type: UPDATE_INPUT_FIELD,
+export const updateDialogInputField = (text) => ({
+  type: UPDATE_DIALOG_INPUT_FIELD,
   body: text,
 });
 
