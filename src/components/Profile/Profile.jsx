@@ -3,7 +3,7 @@ import s from './Profile.module.css';
 import bg from './../../image.png';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
-const Profile = (props) => {
+const Profile = () => {
   return (
     <div>
       <div>

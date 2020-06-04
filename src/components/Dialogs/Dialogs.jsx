@@ -5,14 +5,17 @@ import DialogItem from './DialogItem/DialogItem';
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogs.map((dialog) => (
-    <DialogItem id={dialog.id} name={dialog.name} />
+    <DialogItem key={dialog.id} id={dialog.id} name={dialog.name} />
   ));
 
   const messagesElements = props.messages.map((msg) => {
-    return <Message message={msg.message} />;
+    return <Message key={msg.id} message={msg.message} />;
   });
 
   const onClickHandler = () => {
+    if (props.newMessageText === '') {
+      return alert('Message cannot be empty');
+    }
     props.onButtonClick();
   };
 

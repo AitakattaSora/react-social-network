@@ -3,8 +3,10 @@ import s from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
-  let friends = props.state.friends.map((friend) => {
-    return <li> {friend.name} </li>;
+  const state = props.store.getState().sidebar;
+
+  const friends = state.friends.map((friend) => {
+    return <li key={friend.id}> {friend.name} </li>;
   });
 
   return (
