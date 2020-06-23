@@ -14,24 +14,26 @@ const profileReducer = (state = initialState, action) => {
   // Функция должна быть чистой
   // Нельзя менять существующий объект
   switch (action.type) {
-    case ADD_POST: {
-      const stateCopy = { ...state };
-      stateCopy.posts = [...state.posts];
-      const post = {
-        id: stateCopy.posts.length + 1,
-        post: stateCopy.newPostText,
-        likesCount: 0,
+    case UPDATE_POST_INPUT_FIELD: {
+      return {
+        ...state,
+        newPostText: action.body,
       };
-      stateCopy.posts.push(post);
-      stateCopy.newPostText = '';
-      return stateCopy;
     }
 
-    case UPDATE_POST_INPUT_FIELD: {
-      const stateCopy = { ...state };
-      stateCopy.newPostText = action.body;
-      return stateCopy;
+    case ADD_POST: {
+      const post = {
+        id: state.posts.length + 1,
+        post: state.newPostText,
+        likesCount: 0,
+      };
+      return {
+        ...state,
+        newPostText: '',
+        posts: [...state.posts, post],
+      };
     }
+
     default:
       return state;
   }

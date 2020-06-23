@@ -1,0 +1,51 @@
+.userInfoContainer {
+  display: flex;
+  justify-content: space-between;
+  align-content: space-between;
+  margin: 10px;
+  padding: 10px;
+}
+
+.userInfoContainer * {
+  height: inherit;
+}
+
+.userPhoto {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  border: 2px solid white;
+}
+
+.userInfoLeftBar p {
+  text-align: center;
+}
+
+.userStatusBar {
+  display: flex;
+  align-items: center;
+  justify-content: left;
+}
+
+.userLocationBar {
+  text-align: center;
+}
+
+.actionButton {
+  margin-top: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.actionButton button {
+  background-color: lightcoral; /* Green */
+  border: none;
+  color: white;
+  padding: 10px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 15px;
+  border-radius: 10px;
+}

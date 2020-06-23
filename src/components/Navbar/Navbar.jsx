@@ -9,23 +9,19 @@ const Navbar = (props) => {
     return <li key={friend.id}> {friend.name} </li>;
   });
 
+  const links = state.links.map((link) => {
+    return (
+      <div key={link.id} className={s.item}>
+        <NavLink to={link.to} activeClassName={s.activeClassName}>
+          {link.title}
+        </NavLink>
+      </div>
+    );
+  });
+
   return (
     <nav className={s.nav}>
-      <div className={s.item}>
-        <NavLink to='/profile' activeClassName={s.activeLink}>
-          Profile
-        </NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to='/dialogs' activeClassName={s.activeLink}>
-          Messages
-        </NavLink>
-      </div>
-      <div className={s.item}>
-        <NavLink to='/news' activeClassName={s.activeLink}>
-          News
-        </NavLink>
-      </div>
+      {links}
       <div className='friendsList'>
         <h4>My friends:</h4>
         {friends}
