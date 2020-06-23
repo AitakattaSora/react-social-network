@@ -18,6 +18,7 @@
 }
 
 .userInfoLeftBar p {
+  text-decoration: underline;
   text-align: center;
 }
 
@@ -28,7 +29,19 @@
 }
 
 .userLocationBar {
+  display: flex;
+  align-content: center;
+  justify-content: center;
+  flex-direction: column;
+}
+
+.userLocationBar * {
   text-align: center;
+  display: inline-block;
+  height: fit-content;
+  padding: 0;
+  margin: 0;
+  margin-bottom: 15px;
 }
 
 .actionButton {
@@ -39,7 +52,6 @@
 }
 
 .actionButton button {
-  background-color: lightcoral; /* Green */
   border: none;
   color: white;
   padding: 10px 20px;
@@ -48,4 +60,12 @@
   display: inline-block;
   font-size: 15px;
   border-radius: 10px;
+}
+
+.unfollowButton {
+  background-color: lightcoral;
+}
+
+.followButton {
+  background-color: #1f3a4c;
 }

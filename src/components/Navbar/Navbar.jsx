@@ -1,5 +1,5 @@
 import React from 'react';
-import s from './Navbar.module.css';
+import styles from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
 
 const Navbar = (props) => {
@@ -11,8 +11,8 @@ const Navbar = (props) => {
 
   const links = state.links.map((link) => {
     return (
-      <div key={link.id} className={s.item}>
-        <NavLink to={link.to} activeClassName={s.activeClassName}>
+      <div key={link.id} className={styles.item}>
+        <NavLink to={link.to} activeClassName={styles.activeLink}>
           {link.title}
         </NavLink>
       </div>
@@ -20,7 +20,7 @@ const Navbar = (props) => {
   });
 
   return (
-    <nav className={s.nav}>
+    <nav className={styles.nav}>
       {links}
       <div className='friendsList'>
         <h4>My friends:</h4>

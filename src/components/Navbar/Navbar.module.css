@@ -5,14 +5,11 @@
   padding: 10px 10px;
 }
 
-a {
-  text-decoration: none;
-}
-
 .item a {
+  text-decoration: none;
   color: whitesmoke;
 }
 
-.item a.activeLink {
-  color: aqua;
+.activeLink {
+  color: aqua !important;
 }
