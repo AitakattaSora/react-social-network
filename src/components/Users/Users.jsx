@@ -15,24 +15,24 @@ export default class Users extends React.Component {
           },
         })
         .then((response) => {
-          this.props.getTotal(response.headers['x-total-count']);
-          this.props.getUsers(response.data);
+          this.props.setTotal(response.headers['x-total-count']);
+          this.props.setUsers(response.data);
         });
     }
   }
 
-  onPageChange = (pageNumber) => {
-    this.props.setCurrentPageNumber(pageNumber);
+  onPageChange = (page) => {
+    this.props.setCurrentPage(page);
     axios
       .get(`http://localhost:3004/users`, {
         params: {
-          _page: pageNumber,
+          _page: page,
           _limit: this.props.pageSize,
         },
       })
       .then((response) => {
-        this.props.getTotal(response.headers['x-total-count']);
-        this.props.getUsers(response.data);
+        this.props.setTotal(response.headers['x-total-count']);
+        this.props.setUsers(response.data);
       });
   };
 

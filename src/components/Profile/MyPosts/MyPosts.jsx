@@ -11,12 +11,12 @@ const MyPosts = (props) => {
     if (props.newPostText === '') {
       return alert('Post cannot be empty');
     }
-    props.onButtonClick();
+    props.onClick();
   };
 
   const onChangeHandler = (event) => {
     const text = event.target.value;
-    props.onInputChange(text);
+    props.onChange(text);
   };
 
   return (

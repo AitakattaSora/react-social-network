@@ -11,8 +11,8 @@ const initialState = {
 };
 
 const profileReducer = (state = initialState, action) => {
-  // Функция должна быть чистой
-  // Нельзя менять существующий объект
+  // Function should be pure
+  // We can't change existing object, so we make its copy
   switch (action.type) {
     case UPDATE_POST_INPUT_FIELD: {
       return {
@@ -39,8 +39,9 @@ const profileReducer = (state = initialState, action) => {
   }
 };
 
-export const addPost = () => ({ type: ADD_POST });
-export const updatePostInputField = (text) => ({
+// Action creators
+export const addPostAC = () => ({ type: ADD_POST });
+export const updatePostInputFieldAC = (text) => ({
   type: UPDATE_POST_INPUT_FIELD,
   body: text,
 });

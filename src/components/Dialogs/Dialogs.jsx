@@ -16,12 +16,12 @@ const Dialogs = (props) => {
     if (props.newMessageText === '') {
       return alert('Message cannot be empty');
     }
-    props.onButtonClick();
+    props.onClick();
   };
 
   const onChangeHandler = (event) => {
     let message = event.target.value;
-    props.onInputChange(message);
+    props.onChange(message);
   };
 
   return (

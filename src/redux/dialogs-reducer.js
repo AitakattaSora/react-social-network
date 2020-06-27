@@ -43,9 +43,9 @@ const dialogsReducer = (state = initialState, action) => {
   }
 };
 
-export const sendMessage = () => ({ type: SEND_MESSAGE });
-
-export const updateDialogInputField = (text) => ({
+// Action creators
+export const sendMessageAC = () => ({ type: SEND_MESSAGE });
+export const updateDialogInputFieldAC = (text) => ({
   type: UPDATE_DIALOG_INPUT_FIELD,
   body: text,
 });

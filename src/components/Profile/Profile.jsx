@@ -1,16 +1,16 @@
 import React from 'react';
-import s from './Profile.module.css';
-import bg from './../../image.png';
+import styles from './Profile.module.css';
+import background from './../../assets/img/profile-background.png';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
 
 const Profile = () => {
   return (
     <div>
       <div>
-        <img src={bg} alt='' />
+        <img src={background} alt='' />
       </div>
 
-      <div className={s.profileWrapper}>
+      <div className={styles.profileWrapper}>
         <div>ava+desc</div>
         <MyPostsContainer />
       </div>

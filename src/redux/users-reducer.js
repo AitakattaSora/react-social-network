@@ -71,14 +71,15 @@ const usersReducer = (state = initialState, action) => {
   }
 };
 
-export const followUser = (userId) => ({ type: FOLLOW_USER, userId });
-export const unfollowUser = (userId) => ({ type: UNFOLLOW_USER, userId });
-export const setUsers = (users) => ({ type: SET_USERS, users });
-export const setTotalPagesCount = (count) => ({
+// Action creators
+export const followUserAC = (userId) => ({ type: FOLLOW_USER, userId });
+export const unfollowUserAC = (userId) => ({ type: UNFOLLOW_USER, userId });
+export const setUsersDataAC = (users) => ({ type: SET_USERS, users });
+export const setTotalPagesCountAC = (count) => ({
   type: GET_TOTAL_PAGES_COUNT,
   count,
 });
-export const setCurrentPage = (page) => ({
+export const setCurrentPageAC = (page) => ({
   type: SET_CURRENT_PAGE,
   page,
 });

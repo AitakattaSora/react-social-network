@@ -1,12 +1,13 @@
 import React from 'react';
-import s from './Header.module.css'
+import styles from './Header.module.css';
+import icon from './../../assets/img/header-icon.svg';
 
 const Header = () => {
-    return (
-        <header className={s.header}>
-            <img src="https://image.flaticon.com/icons/svg/149/149066.svg" alt="" />
-        </header>
-    )
-}
+  return (
+    <header className={styles.header}>
+      <img src={icon} alt='' />
+    </header>
+  );
+};
 
 export default Header;
