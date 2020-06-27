@@ -1,8 +1,17 @@
+.usersContainer {
+  margin: 20px;
+}
+
+.pagesContainer * {
+  margin-left: 5px;
+  margin-right: 5px;
+}
+
 .userInfoContainer {
   display: flex;
   justify-content: space-between;
   align-content: space-between;
-  margin: 10px;
+  /* margin: 10px; */
   padding: 10px;
 }
 
@@ -68,4 +77,12 @@
 
 .followButton {
   background-color: #1f3a4c;
+}
+
+.pagesContainer * {
+  cursor: pointer;
+}
+
+.selectedPage {
+  font-weight: bold;
 }

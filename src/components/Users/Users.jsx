@@ -1,29 +1,40 @@
 import React from 'react';
 import styles from './Users.module.css';
 import axios from 'axios';
+import userIcon from '../../assets/img/user-icon.png';
 
 export default class Users extends React.Component {
   componentDidMount() {
     if (this.props.users.length === 0) {
+      // `https://social-network.samuraijs.com/api/1.0/users?page=${this.props.currentPage}&count=${this.props.pageSize}`
       axios
-        .get('https://social-network.samuraijs.com/api/1.0/users')
+        .get(`http://localhost:3004/users`, {
+          params: {
+            _page: this.props.currentPage,
+            _limit: this.props.pageSize,
+          },
+        })
         .then((response) => {
-          this.props.getUsers(response.data.items);
+          this.props.getTotal(response.headers['x-total-count']);
+          this.props.getUsers(response.data);
         });
-      return (
-        <div
-          style={{
-            display: 'flex',
-            justifyContent: 'center',
-            paddingTop: '60px',
-            fontSize: '20px',
-          }}
-        >
-          Loading...
-        </div>
-      );
     }
   }
+
+  onPageChange = (pageNumber) => {
+    this.props.setCurrentPageNumber(pageNumber);
+    axios
+      .get(`http://localhost:3004/users`, {
+        params: {
+          _page: pageNumber,
+          _limit: this.props.pageSize,
+        },
+      })
+      .then((response) => {
+        this.props.getTotal(response.headers['x-total-count']);
+        this.props.getUsers(response.data);
+      });
+  };
 
   render() {
     if (this.props.users.length === 0) {
@@ -41,8 +52,35 @@ export default class Users extends React.Component {
       );
     }
 
+    const pagesCount = Math.ceil(this.props.totalPages / this.props.pageSize);
+
+    const pages = [];
+    for (let i = 1; i <= pagesCount; i++) {
+      pages.push(i);
+    }
+
     return (
-      <div>
+      <div className={styles.usersContainer}>
+        <div className={styles.pagesContainer}>
+          <strong>total: {pagesCount}</strong> <br />
+          {pages.map((page) => {
+            return (
+              <span
+                key={page}
+                className={
+                  this.props.currentPage === page
+                    ? styles.selectedPage
+                    : 'false'
+                }
+                onClick={() => {
+                  this.onPageChange(page);
+                }}
+              >
+                {page}
+              </span>
+            );
+          })}
+        </div>
         {this.props.users.map((user) => {
           return (
             <div key={user.id} className={styles.userInfoContainer}>
@@ -51,9 +89,7 @@ export default class Users extends React.Component {
                 <img
                   className={styles.userPhoto}
                   src={
-                    user.photos.small !== null
-                      ? user.photos.small
-                      : 'https://c-sf.smule.com/rs-s80/arr/5f/b9/b50b3845-3172-42bb-814d-ec0a2b27ad86.jpg'
+                    user.photos.small !== null ? user.photos.small : userIcon
                   }
                   alt=''
                 />
@@ -61,6 +97,7 @@ export default class Users extends React.Component {
                   {user.followed ? (
                     <button
                       className={styles.unfollowButton}
+                      // We pass an anonymous function there because we need a pageNumber parameter, but default onClick function takes and event parameter, which we don't need
                       onClick={() => {
                         this.props.unfollow(user.id);
                       }}
