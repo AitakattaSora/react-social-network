@@ -72,11 +72,11 @@
 }
 
 .unfollowButton {
-  background-color: lightcoral;
+  background-color: lightcoral !important;
 }
 
 .followButton {
-  background-color: #1f3a4c;
+  background-color: #1f3a4c !important;
 }
 
 .pagesContainer * {

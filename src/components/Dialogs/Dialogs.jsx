@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import Message from './Message/Message.jsx';
 import DialogItem from './DialogItem/DialogItem';
+import ActionButton from '../Elements/Button';
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogs.map((dialog) => (
@@ -34,11 +35,10 @@ const Dialogs = (props) => {
             value={props.newMessageText}
             onChange={onChangeHandler}
             placeholder='Start writing message...'
-            cols='50'
-            rows='10'
           ></textarea>
-          <div>
-            <button onClick={onClickHandler}>Send Message</button>
+
+          <div className={styles.buttonContainer}>
+            <ActionButton name='Send Message' onClick={onClickHandler} />
           </div>
         </div>
       </div>

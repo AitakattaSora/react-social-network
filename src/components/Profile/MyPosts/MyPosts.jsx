@@ -1,10 +1,11 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
+import ActionButton from '../../Elements/Button';
 
 const MyPosts = (props) => {
   const postsElements = props.posts.map((post) => {
-    return <Post message={post.post} likes={post.likesCount} />;
+    return <Post key={post.id} message={post.post} likes={post.likesCount} />;
   });
 
   const onClickHandler = () => {
@@ -32,7 +33,7 @@ const MyPosts = (props) => {
         ></textarea>
       </div>
       <div>
-        <button onClick={onClickHandler}>Add post</button>
+        <ActionButton onClick={onClickHandler} name='Add post' />
       </div>
       <div className={styles.posts}>{postsElements}</div>
     </div>

@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './Users.module.css';
 import axios from 'axios';
-import userIcon from '../../assets/img/user-icon.png';
+import userIcon from '../../assets/img/user-icon.svg';
+import ActionButton from '../Elements/Button';
 
 export default class Users extends React.Component {
   componentDidMount() {
@@ -72,6 +73,7 @@ export default class Users extends React.Component {
                     ? styles.selectedPage
                     : 'false'
                 }
+                // We pass an anonymous function there because we need a pageNumber parameter, but default onClick function takes and event parameter, which we don't need
                 onClick={() => {
                   this.onPageChange(page);
                 }}
@@ -95,24 +97,21 @@ export default class Users extends React.Component {
                 />
                 <div className={styles.actionButton}>
                   {user.followed ? (
-                    <button
+                    <ActionButton
                       className={styles.unfollowButton}
-                      // We pass an anonymous function there because we need a pageNumber parameter, but default onClick function takes and event parameter, which we don't need
+                      name='Unfollow'
                       onClick={() => {
                         this.props.unfollow(user.id);
                       }}
-                    >
-                      Unfollow
-                    </button>
+                    />
                   ) : (
-                    <button
+                    <ActionButton
                       className={styles.followButton}
+                      name='Follow'
                       onClick={() => {
                         this.props.follow(user.id);
                       }}
-                    >
-                      Follow
-                    </button>
+                    />
                   )}
                 </div>
               </div>
