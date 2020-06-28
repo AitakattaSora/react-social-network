@@ -3,6 +3,7 @@ const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
 const GET_TOTAL_PAGES_COUNT = 'GET_TOTAL_PAGES_COUNT';
 const SET_CURRENT_PAGE = 'SET_CURRENT_PAGE';
+const TOGGLE_FETCHING = 'TOGGLE_FETCHING';
 
 const initialState = {
   users: [],
@@ -10,6 +11,7 @@ const initialState = {
   totalPages: 0,
   pageSize: 4,
   currentPage: 1,
+  isFetching: false,
 };
 
 const usersReducer = (state = initialState, action) => {
@@ -30,7 +32,6 @@ const usersReducer = (state = initialState, action) => {
     }
 
     case UNFOLLOW_USER: {
-      console.log(state);
       return {
         ...state,
         users: state.users.map((user) => {
@@ -66,6 +67,13 @@ const usersReducer = (state = initialState, action) => {
       };
     }
 
+    case TOGGLE_FETCHING: {
+      return {
+        ...state,
+        isFetching: action.value,
+      };
+    }
+
     default:
       return state;
   }
@@ -82,6 +90,10 @@ export const setTotalPagesCountAC = (count) => ({
 export const setCurrentPageAC = (page) => ({
   type: SET_CURRENT_PAGE,
   page,
+});
+export const toggleFetchingAC = (value) => ({
+  type: TOGGLE_FETCHING,
+  value,
 });
 
 export default usersReducer;

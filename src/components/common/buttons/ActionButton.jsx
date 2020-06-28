@@ -12,6 +12,7 @@ const ActionButton = (props) => {
         fontSize: '15px',
         borderRadius: '10px',
         backgroundColor: '#1f3a4c',
+        marginTop: '10px',
       }}
       className={props.className}
       onClick={props.onClick}

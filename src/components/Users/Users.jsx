@@ -1,7 +1,7 @@
 import React from 'react';
 import styles from './Users.module.css';
 import userIcon from '../../assets/img/user-icon.svg';
-import ActionButton from '../Elements/Button';
+import ActionButton from '../common/buttons/ActionButton';
 
 // Pure functional components that only takes props and returns JSX
 const Users = (props) => {
@@ -65,8 +65,8 @@ const Users = (props) => {
             </div>
             <div className={styles.userStatusBar}>{user.status}</div>
             <div className={styles.userLocationBar}>
-              <p>{'user.location.city'}</p>
-              <p>{'user.location.country'}</p>
+              <p>{user.location.city}</p>
+              <p>{user.location.country}</p>
             </div>
           </div>
         );

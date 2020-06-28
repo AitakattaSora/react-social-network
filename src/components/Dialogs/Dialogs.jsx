@@ -2,7 +2,8 @@ import React from 'react';
 import styles from './Dialogs.module.css';
 import Message from './Message/Message.jsx';
 import DialogItem from './DialogItem/DialogItem';
-import ActionButton from '../Elements/Button';
+import ActionButton from '../common/buttons/ActionButton';
+import MultilineField from '../common/inputs/MultilineField';
 
 const Dialogs = (props) => {
   const dialogsElements = props.dialogs.map((dialog) => (
@@ -31,12 +32,11 @@ const Dialogs = (props) => {
       <div className={styles.messages}>
         <div>{messagesElements}</div>
         <div className={styles.inputField}>
-          <textarea
+          <MultilineField
             value={props.newMessageText}
             onChange={onChangeHandler}
             placeholder='Start writing message...'
-          ></textarea>
-
+          />
           <div className={styles.buttonContainer}>
             <ActionButton name='Send Message' onClick={onClickHandler} />
           </div>

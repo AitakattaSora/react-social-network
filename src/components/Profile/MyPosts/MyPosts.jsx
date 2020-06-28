@@ -1,7 +1,8 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
 import Post from './Post/Post.jsx';
-import ActionButton from '../../Elements/Button';
+import ActionButton from '../../common/buttons/ActionButton';
+import MultilineField from '../../common/inputs/MultilineField';
 
 const MyPosts = (props) => {
   const postsElements = props.posts.map((post) => {
@@ -24,13 +25,13 @@ const MyPosts = (props) => {
     <div>
       <div>My posts</div>
       <div>
-        <textarea
+        <MultilineField
           onChange={onChangeHandler}
           value={props.newPostText}
           placeholder='Start writing post...'
-          cols='70'
-          rows='10'
-        ></textarea>
+          width='450px'
+          height='120px'
+        />
       </div>
       <div>
         <ActionButton onClick={onClickHandler} name='Add post' />

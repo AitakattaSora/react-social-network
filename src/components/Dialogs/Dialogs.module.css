@@ -25,7 +25,6 @@
 }
 
 .buttonContainer {
-  margin-top: 10px;
   position: relative;
   width: inherit;
 }
@@ -39,5 +38,4 @@
   border: 0;
   padding: 10px;
   width: inherit;
-  /* width: inherit; */
 }
