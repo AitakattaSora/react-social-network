@@ -1,12 +1,9 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_INPUT_FIELD = 'UPDATE_POST_INPUT_FIELD';
+const SET_POSTS_DATA = 'SET_POSTS_DATA';
 
 const initialState = {
-  posts: [
-    { id: 1, post: "What's up?", likesCount: 5 },
-    { id: 2, post: 'This is my first react app', likesCount: 7 },
-    { id: 3, post: 'No one loves me', likesCount: 19 },
-  ],
+  posts: [],
   newPostText: '',
 };
 
@@ -34,6 +31,13 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
+    case SET_POSTS_DATA: {
+      return {
+        ...state,
+        posts: [...state.posts, ...action.postsData],
+      };
+    }
+
     default:
       return state;
   }
@@ -44,6 +48,10 @@ export const addPostAC = () => ({ type: ADD_POST });
 export const updatePostInputFieldAC = (text) => ({
   type: UPDATE_POST_INPUT_FIELD,
   body: text,
+});
+export const setPostsDataAC = (postsData) => ({
+  type: SET_POSTS_DATA,
+  postsData,
 });
 
 export default profileReducer;

@@ -4,6 +4,7 @@ const ActionButton = (props) => {
   return (
     <button
       style={{
+        cursor: 'pointer',
         border: 'none',
         color: 'white',
         padding: '10px 20px',

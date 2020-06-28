@@ -11,7 +11,6 @@ const Profile = () => {
       </div>
 
       <div className={styles.profileWrapper}>
-        <div>ava+desc</div>
         <MyPostsContainer />
       </div>
     </div>
