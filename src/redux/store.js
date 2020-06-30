@@ -4,7 +4,7 @@ import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 
-// По сути это и есть старый объект store
+// This is basically old-store, but using redux
 const reducers = combineReducers({
   dialogsPage: dialogsReducer,
   profilePage: profileReducer,

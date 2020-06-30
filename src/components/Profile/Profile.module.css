@@ -1,7 +1,28 @@
 img {
-  width: 100%
+  width: 100%;
 }
 
 .profileWrapper {
   padding: 10px;
+}
+
+.userProfile {
+  display: flex;
+  justify-content: left;
+  margin: 10px;
+}
+
+.userProfileData {
+  margin-left: 20px;
+}
+
+.userProfile img {
+  width: 200px;
+  height: 200px;
+  border-radius: 50%p;
+}
+
+.userProfile p {
+  margin: 0;
+  margin-bottom: 3px;
 }

@@ -2,12 +2,12 @@ import React from 'react';
 import axios from 'axios';
 import { connect } from 'react-redux';
 import {
-  followUserAC,
-  unfollowUserAC,
-  setUsersDataAC,
-  setTotalPagesCountAC,
-  setCurrentPageAC,
-  toggleFetchingAC,
+  follow,
+  unfollow,
+  setUsers,
+  setTotal,
+  setCurrentPage,
+  toggleFetching,
 } from '../../redux/users-reducer';
 import Users from './Users.jsx';
 import DefaultLoader from '../common/loaders/DefaultLoader';
@@ -18,6 +18,12 @@ import DefaultLoader from '../common/loaders/DefaultLoader';
  * Second container component's purpose is to make API requests and give props to Users functional component
 
  * Before there were 3 files: UsersContainer -> UsersContainer2 (Class component) -> Users (Functional component)
+
+ * mapDispatchToProps trick:
+ * instead of making a wrapper function that dispatches action,
+ * we can just create an object with action creators and pass it as second parameter
+ * to connect function. It will do the logic itself.
+ * 
  */
 
 // Second container component
@@ -88,28 +94,12 @@ const mapStateToProps = (state) => {
   };
 };
 
-const mapDispatchToProps = (dispatch) => {
-  return {
-    follow: (userId) => {
-      dispatch(followUserAC(userId));
-    },
-    unfollow: (userId) => {
-      dispatch(unfollowUserAC(userId));
-    },
-    setUsers: (users) => {
-      dispatch(setUsersDataAC(users));
-    },
-    setTotal: (count) => {
-      dispatch(setTotalPagesCountAC(count));
-    },
-    setCurrentPage: (page) => {
-      dispatch(setCurrentPageAC(page));
-    },
-    toggleFetching: (value) => {
-      dispatch(toggleFetchingAC(value));
-    },
-  };
-};
-
 // First container component
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setTotal,
+  setCurrentPage,
+  toggleFetching,
+})(UsersContainer);

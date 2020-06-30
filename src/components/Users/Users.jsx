@@ -2,6 +2,7 @@ import React from 'react';
 import styles from './Users.module.css';
 import userIcon from '../../assets/img/user-icon.svg';
 import ActionButton from '../common/buttons/ActionButton';
+import { NavLink } from 'react-router-dom';
 
 // Pure functional components that only takes props and returns JSX
 const Users = (props) => {
@@ -38,11 +39,15 @@ const Users = (props) => {
           <div key={user.id} className={styles.userInfoContainer}>
             <div className={styles.userInfoLeftBar}>
               <p>{user.name}</p>
-              <img
-                className={styles.userPhoto}
-                src={user.photos.small !== null ? user.photos.small : userIcon}
-                alt=''
-              />
+              <NavLink to={`/profile/${user.id}`}>
+                <img
+                  className={styles.userPhoto}
+                  src={
+                    user.photos.small !== null ? user.photos.small : userIcon
+                  }
+                  alt=''
+                />
+              </NavLink>
               <div className={styles.actionButton}>
                 {user.followed ? (
                   <ActionButton

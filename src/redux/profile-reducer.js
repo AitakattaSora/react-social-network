@@ -1,10 +1,12 @@
 const ADD_POST = 'ADD_POST';
 const UPDATE_POST_INPUT_FIELD = 'UPDATE_POST_INPUT_FIELD';
 const SET_POSTS_DATA = 'SET_POSTS_DATA';
+const SET_USER_PROFILE = 'SET_USER_PROFILE';
 
 const initialState = {
   posts: [],
   newPostText: '',
+  profile: null,
 };
 
 const profileReducer = (state = initialState, action) => {
@@ -38,6 +40,13 @@ const profileReducer = (state = initialState, action) => {
       };
     }
 
+    case SET_USER_PROFILE: {
+      return {
+        ...state,
+        profile: action.profile,
+      };
+    }
+
     default:
       return state;
   }
@@ -52,6 +61,10 @@ export const updatePostInputFieldAC = (text) => ({
 export const setPostsDataAC = (postsData) => ({
   type: SET_POSTS_DATA,
   postsData,
+});
+export const setUserProfile = (profile) => ({
+  type: SET_USER_PROFILE,
+  profile,
 });
 
 export default profileReducer;
