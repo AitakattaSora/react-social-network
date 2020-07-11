@@ -14,6 +14,24 @@
   padding: 10px;
 }
 
+.userInfoLeftBar {
+  flex: 0.4;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.userStatusBar {
+  flex: 2.5;
+  align-items: center;
+}
+
+.userLocationBar {
+  flex: 0.4;
+  align-items: center;
+}
+
 .userInfoContainer * {
   height: inherit;
 }
@@ -34,7 +52,7 @@
 .userStatusBar {
   display: flex;
   align-items: center;
-  justify-content: left;
+  justify-content: center;
 }
 
 .userLocationBar {

@@ -1,5 +1,4 @@
 import React from 'react';
-import axios from 'axios';
 import { connect } from 'react-redux';
 import {
   follow,
@@ -11,6 +10,7 @@ import {
 } from '../../redux/users-reducer';
 import Users from './Users.jsx';
 import DefaultLoader from '../common/loaders/DefaultLoader';
+import { usersAPI } from '../../api/api';
 
 /**
  * Now there are 2 container components and 1 functional
@@ -31,36 +31,25 @@ class UsersContainer extends React.Component {
   componentDidMount() {
     if (this.props.users.length === 0) {
       this.props.toggleFetching(true);
-      axios
-        .get(`http://localhost:3004/users`, {
-          params: {
-            _page: this.props.currentPage,
-            _limit: this.props.pageSize,
-          },
-        })
-        .then((response) => {
-          this.props.toggleFetching(false);
-          this.props.setTotal(response.headers['x-total-count']);
-          this.props.setUsers(response.data);
-        });
+      const { currentPage, pageSize } = this.props;
+
+      usersAPI.getUsers(currentPage, pageSize).then(({ data, total }) => {
+        this.props.toggleFetching(false);
+        this.props.setTotal(total);
+        this.props.setUsers(data);
+      });
     }
   }
 
   onPageChange = (page) => {
     this.props.setCurrentPage(page);
     this.props.toggleFetching(true);
-    axios
-      .get(`http://localhost:3004/users`, {
-        params: {
-          _page: page,
-          _limit: this.props.pageSize,
-        },
-      })
-      .then((response) => {
-        this.props.toggleFetching(false);
-        this.props.setTotal(response.headers['x-total-count']);
-        this.props.setUsers(response.data);
-      });
+    const { pageSize } = this.props;
+
+    usersAPI.getUsers(page, pageSize).then(({ data }) => {
+      this.props.toggleFetching(false);
+      this.props.setUsers(data);
+    });
   };
 
   render() {

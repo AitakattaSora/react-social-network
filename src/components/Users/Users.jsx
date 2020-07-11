@@ -3,7 +3,7 @@ import styles from './Users.module.css';
 import userIcon from '../../assets/img/user-icon.svg';
 import ActionButton from '../common/buttons/ActionButton';
 import { NavLink } from 'react-router-dom';
-import axios from 'axios';
+import { usersAPI } from '../../api/api';
 
 // Pure functional components that only takes props and returns JSX
 const Users = (props) => {
@@ -55,8 +55,8 @@ const Users = (props) => {
                     className={styles.unfollowButton}
                     name='Unfollow'
                     onClick={() => {
-                      axios
-                        .put(`http://localhost:3004/users/${user.id}`, {
+                      usersAPI
+                        .unfollowUser(user.id, {
                           ...user,
                           followed: false,
                         })
@@ -72,8 +72,8 @@ const Users = (props) => {
                     className={styles.followButton}
                     name='Follow'
                     onClick={() => {
-                      axios
-                        .put(`http://localhost:3004/users/${user.id}`, {
+                      usersAPI
+                        .followUser(user.id, {
                           ...user,
                           followed: true,
                         })
