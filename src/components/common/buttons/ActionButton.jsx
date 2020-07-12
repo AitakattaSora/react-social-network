@@ -3,6 +3,7 @@ import React from 'react';
 const ActionButton = (props) => {
   return (
     <button
+      disabled={props.isFetching}
       style={{
         cursor: 'pointer',
         border: 'none',

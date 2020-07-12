@@ -54,7 +54,9 @@ const Users = (props) => {
                   <ActionButton
                     className={styles.unfollowButton}
                     name='Unfollow'
+                    isFetching={props.isFollowing.includes(user.id)}
                     onClick={() => {
+                      props.setIsFollowing(user.id, true);
                       usersAPI
                         .unfollowUser(user.id, {
                           ...user,
@@ -64,6 +66,7 @@ const Users = (props) => {
                           if (response.status === 200) {
                             props.unfollow(user.id);
                           }
+                          props.setIsFollowing(user.id, false);
                         });
                     }}
                   />
@@ -71,7 +74,9 @@ const Users = (props) => {
                   <ActionButton
                     className={styles.followButton}
                     name='Follow'
+                    isFetching={props.isFollowing.includes(user.id)}
                     onClick={() => {
+                      props.setIsFollowing(user.id, true);
                       usersAPI
                         .followUser(user.id, {
                           ...user,
@@ -81,6 +86,7 @@ const Users = (props) => {
                           if (response.status === 200) {
                             props.follow(user.id);
                           }
+                          props.setIsFollowing(user.id, false);
                         });
                     }}
                   />
