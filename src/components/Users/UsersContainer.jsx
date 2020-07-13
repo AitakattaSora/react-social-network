@@ -1,17 +1,8 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import {
-  follow,
-  unfollow,
-  setUsers,
-  setTotal,
-  setCurrentPage,
-  toggleFetching,
-  setIsFollowing,
-} from '../../redux/users-reducer';
+import { followUser, unfollowUser, getUsers } from '../../redux/users-reducer';
 import Users from './Users.jsx';
 import DefaultLoader from '../common/loaders/DefaultLoader';
-import { usersAPI } from '../../api/api';
 
 /**
  * Now there are 2 container components and 1 functional
@@ -31,26 +22,14 @@ import { usersAPI } from '../../api/api';
 class UsersContainer extends React.Component {
   componentDidMount() {
     if (this.props.users.length === 0) {
-      this.props.toggleFetching(true);
-      const { currentPage, pageSize } = this.props;
-
-      usersAPI.getUsers(currentPage, pageSize).then(({ data, total }) => {
-        this.props.toggleFetching(false);
-        this.props.setTotal(total);
-        this.props.setUsers(data);
-      });
+      const { currentPage, pageSize, getUsers } = this.props;
+      getUsers(currentPage, pageSize);
     }
   }
 
   onPageChange = (page) => {
-    this.props.setCurrentPage(page);
-    this.props.toggleFetching(true);
-    const { pageSize } = this.props;
-
-    usersAPI.getUsers(page, pageSize).then(({ data }) => {
-      this.props.toggleFetching(false);
-      this.props.setUsers(data);
-    });
+    const { getUsers, pageSize } = this.props;
+    getUsers(page, pageSize);
   };
 
   render() {
@@ -65,10 +44,9 @@ class UsersContainer extends React.Component {
         totalPages={this.props.totalPages}
         users={this.props.users}
         onPageChange={this.onPageChange}
-        follow={this.props.follow}
-        unfollow={this.props.unfollow}
+        followUser={this.props.followUser}
+        unfollowUser={this.props.unfollowUser}
         isFollowing={this.props.isFollowing}
-        setIsFollowing={this.props.setIsFollowing}
       />
     );
   }
@@ -88,11 +66,7 @@ const mapStateToProps = (state) => {
 
 // First container component
 export default connect(mapStateToProps, {
-  follow,
-  unfollow,
-  setUsers,
-  setTotal,
-  setCurrentPage,
-  toggleFetching,
-  setIsFollowing,
+  getUsers,
+  followUser,
+  unfollowUser,
 })(UsersContainer);

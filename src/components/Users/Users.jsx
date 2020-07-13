@@ -3,7 +3,6 @@ import styles from './Users.module.css';
 import userIcon from '../../assets/img/user-icon.svg';
 import ActionButton from '../common/buttons/ActionButton';
 import { NavLink } from 'react-router-dom';
-import { usersAPI } from '../../api/api';
 
 // Pure functional components that only takes props and returns JSX
 const Users = (props) => {
@@ -56,18 +55,7 @@ const Users = (props) => {
                     name='Unfollow'
                     isFetching={props.isFollowing.includes(user.id)}
                     onClick={() => {
-                      props.setIsFollowing(user.id, true);
-                      usersAPI
-                        .unfollowUser(user.id, {
-                          ...user,
-                          followed: false,
-                        })
-                        .then((response) => {
-                          if (response.status === 200) {
-                            props.unfollow(user.id);
-                          }
-                          props.setIsFollowing(user.id, false);
-                        });
+                      props.unfollowUser(user);
                     }}
                   />
                 ) : (
@@ -76,18 +64,7 @@ const Users = (props) => {
                     name='Follow'
                     isFetching={props.isFollowing.includes(user.id)}
                     onClick={() => {
-                      props.setIsFollowing(user.id, true);
-                      usersAPI
-                        .followUser(user.id, {
-                          ...user,
-                          followed: true,
-                        })
-                        .then((response) => {
-                          if (response.status === 200) {
-                            props.follow(user.id);
-                          }
-                          props.setIsFollowing(user.id, false);
-                        });
+                      props.followUser(user);
                     }}
                   />
                 )}

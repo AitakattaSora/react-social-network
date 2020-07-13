@@ -1,3 +1,5 @@
+import { usersAPI } from '../api/api';
+
 const FOLLOW_USER = 'FOLLOW_USER';
 const UNFOLLOW_USER = 'UNFOLLOW_USER';
 const SET_USERS = 'SET_USERS';
@@ -111,5 +113,53 @@ export const setIsFollowing = (id, value) => ({
   id,
   value,
 });
+
+// Thunks
+export const getUsers = (currentPage, pageSize) => {
+  return (dispatch) => {
+    dispatch(toggleFetching(true));
+
+    usersAPI.getUsers(currentPage, pageSize).then(({ data, total }) => {
+      dispatch(setCurrentPage(currentPage));
+      dispatch(toggleFetching(false));
+      dispatch(setTotal(total));
+      dispatch(setUsers(data));
+    });
+  };
+};
+
+export const followUser = (user) => {
+  return (dispatch) => {
+    dispatch(setIsFollowing(user.id, true));
+    usersAPI
+      .followUser(user.id, {
+        ...user,
+        followed: true,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(follow(user.id));
+        }
+        dispatch(setIsFollowing(user.id, false));
+      });
+  };
+};
+
+export const unfollowUser = (user) => {
+  return (dispatch) => {
+    dispatch(setIsFollowing(user.id, true));
+    usersAPI
+      .unfollowUser(user.id, {
+        ...user,
+        followed: false,
+      })
+      .then((res) => {
+        if (res.status === 200) {
+          dispatch(unfollow(user.id));
+        }
+        dispatch(setIsFollowing(user.id, false));
+      });
+  };
+};
 
 export default usersReducer;

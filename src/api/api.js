@@ -25,4 +25,12 @@ export const usersAPI = {
     const response = await instance.put(`/users/${userId}`, data);
     return response;
   },
+  getPosts: async () => {
+    const response = await instance.get('/posts');
+    return response.data;
+  },
+  getProfile: async (userId) => {
+    const response = await instance.get(`/users/${userId}`);
+    return response.data;
+  },
 };
