@@ -1,7 +1,7 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { followUser, unfollowUser, getUsers } from '../../redux/users-reducer';
-import Users from './Users.jsx';
+import Users from './Users';
 import DefaultLoader from '../common/loaders/DefaultLoader';
 
 /**

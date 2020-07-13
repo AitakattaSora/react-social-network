@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './MyPosts.module.css';
-import Post from './Post/Post.jsx';
+import Post from './Post/Post';
 import ActionButton from '../../common/buttons/ActionButton';
 import MultilineField from '../../common/inputs/MultilineField';
 

@@ -115,51 +115,45 @@ export const setIsFollowing = (id, value) => ({
 });
 
 // Thunks
-export const getUsers = (currentPage, pageSize) => {
-  return (dispatch) => {
-    dispatch(toggleFetching(true));
+export const getUsers = (currentPage, pageSize) => (dispatch) => {
+  dispatch(toggleFetching(true));
 
-    usersAPI.getUsers(currentPage, pageSize).then(({ data, total }) => {
-      dispatch(setCurrentPage(currentPage));
-      dispatch(toggleFetching(false));
-      dispatch(setTotal(total));
-      dispatch(setUsers(data));
+  usersAPI.getUsers(currentPage, pageSize).then(({ data, total }) => {
+    dispatch(setCurrentPage(currentPage));
+    dispatch(toggleFetching(false));
+    dispatch(setTotal(total));
+    dispatch(setUsers(data));
+  });
+};
+
+export const followUser = (user) => (dispatch) => {
+  dispatch(setIsFollowing(user.id, true));
+  usersAPI
+    .followUser(user.id, {
+      ...user,
+      followed: true,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(follow(user.id));
+      }
+      dispatch(setIsFollowing(user.id, false));
     });
-  };
 };
 
-export const followUser = (user) => {
-  return (dispatch) => {
-    dispatch(setIsFollowing(user.id, true));
-    usersAPI
-      .followUser(user.id, {
-        ...user,
-        followed: true,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          dispatch(follow(user.id));
-        }
-        dispatch(setIsFollowing(user.id, false));
-      });
-  };
-};
-
-export const unfollowUser = (user) => {
-  return (dispatch) => {
-    dispatch(setIsFollowing(user.id, true));
-    usersAPI
-      .unfollowUser(user.id, {
-        ...user,
-        followed: false,
-      })
-      .then((res) => {
-        if (res.status === 200) {
-          dispatch(unfollow(user.id));
-        }
-        dispatch(setIsFollowing(user.id, false));
-      });
-  };
+export const unfollowUser = (user) => (dispatch) => {
+  dispatch(setIsFollowing(user.id, true));
+  usersAPI
+    .unfollowUser(user.id, {
+      ...user,
+      followed: false,
+    })
+    .then((res) => {
+      if (res.status === 200) {
+        dispatch(unfollow(user.id));
+      }
+      dispatch(setIsFollowing(user.id, false));
+    });
 };
 
 export default usersReducer;

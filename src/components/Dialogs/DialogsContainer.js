@@ -1,7 +1,7 @@
 import {
   sendMessageAC,
   updateDialogInputFieldAC,
-} from './../../redux/dialogs-reducer';
+} from '../../redux/dialogs-reducer';
 import Dialogs from './Dialogs';
 import { connect } from 'react-redux';
 

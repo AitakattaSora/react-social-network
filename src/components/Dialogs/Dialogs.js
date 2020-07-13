@@ -1,6 +1,6 @@
 import React from 'react';
 import styles from './Dialogs.module.css';
-import Message from './Message/Message.jsx';
+import Message from './Message/Message';
 import DialogItem from './DialogItem/DialogItem';
 import ActionButton from '../common/buttons/ActionButton';
 import MultilineField from '../common/inputs/MultilineField';
