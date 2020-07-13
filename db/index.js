@@ -29,16 +29,18 @@ module.exports = () => {
   });
 
   for (let i = 1; i < amount; i++) {
+    const firstName = faker.name.firstName();
+
     data.users.push({
       id: i,
-      name: faker.name.firstName(),
+      name: firstName,
       location: {
         city: faker.address.city(),
         country: faker.address.country(),
       },
       photos: {
-        small: faker.random.image(),
-        large: faker.random.image(),
+        small: `https://fakeimg.pl/500x500/282828/?retina=1&text=${firstName}`,
+        large: `https://fakeimg.pl/500x500/282828/?retina=1&text=${firstName}`,
       },
       status: faker.lorem.sentence(4),
       followed: faker.random.boolean(),
