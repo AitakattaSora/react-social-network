@@ -27,37 +27,3 @@ const mapDispatchToProps = (dispatch) => {
 const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs);
 
 export default DialogsContainer;
-
-/**
- * without react-redux connect
-const DialogsContainer = (props) => {
-  return (
-    <StoreContext.Consumer>
-      {(store) => {
-        const state = store.getState();
-        const { dispatch } = store;
-
-        const { dialogs, messages, newMessageText } = state.dialogsPage;
-
-        const onClickHandler = () => {
-          dispatch(sendMessage());
-        };
-
-        const onChangeHandler = (text) => {
-          dispatch(updateDialogInputField(text));
-        };
-
-        return (
-          <Dialogs
-            messages={messages}
-            dialogs={dialogs}
-            newMessageText={newMessageText}
-            onInputChange={onChangeHandler}
-            onButtonClick={onClickHandler}
-          />
-        );
-      }}
-    </StoreContext.Consumer>
-  );
-};
-*/

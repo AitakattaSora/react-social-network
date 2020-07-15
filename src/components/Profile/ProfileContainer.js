@@ -4,6 +4,7 @@ import { connect } from 'react-redux';
 import { setUserProfile, getProfile } from '../../redux/profile-reducer';
 import DefaultLoader from '../common/loaders/DefaultLoader';
 import { withRouter } from 'react-router-dom';
+import { compose } from 'redux';
 
 class ProfileContainer extends React.Component {
   componentDidMount() {
@@ -35,7 +36,12 @@ const mapStateToProps = (state) => ({
  * Now we have connect -> withRouter -> ProfileContainer -> Profile
  */
 
-export default connect(mapStateToProps, {
-  setUserProfile,
-  getProfile,
-})(withRouter(ProfileContainer));
+// This is the same as connect(....)(withRouter(ProfileContainer))
+// compose function works like Array.prototype.reduceRight
+export default compose(
+  connect(mapStateToProps, {
+    setUserProfile,
+    getProfile,
+  }),
+  withRouter
+)(ProfileContainer);
