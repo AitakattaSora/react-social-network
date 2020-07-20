@@ -4,7 +4,7 @@ import sidebarReducer from './sidebar-reducer';
 import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 import thunk from 'redux-thunk';
-import logger from 'redux-logger';
+// import logger from 'redux-logger';
 
 // This is basically old-store, but using redux
 const reducers = combineReducers({
@@ -14,6 +14,6 @@ const reducers = combineReducers({
   sidebar: sidebarReducer,
 });
 
-const store = createStore(reducers, applyMiddleware(logger, thunk));
+const store = createStore(reducers, applyMiddleware(thunk));
 
 export default store;

@@ -25,6 +25,9 @@ export const usersAPI = {
     const response = await instance.put(`/users/${userId}`, data);
     return response;
   },
+};
+
+export const profileAPI = {
   getPosts: async () => {
     const response = await instance.get('/posts');
     return response.data;
@@ -32,5 +35,13 @@ export const usersAPI = {
   getProfile: async (userId) => {
     const response = await instance.get(`/users/${userId}`);
     return response.data;
+  },
+  getStatus: async (userId) => {
+    const response = instance.get(`/status/${userId}`);
+    return response;
+  },
+  updateStatus: async (userId, status) => {
+    const response = instance.put(`/status/${userId}`, { status });
+    return response;
   },
 };

@@ -2,8 +2,9 @@ import React from 'react';
 import styles from './Profile.module.css';
 import background from './../../assets/img/profile-background.png';
 import MyPostsContainer from './MyPosts/MyPostsContainer';
+import Status from './Status';
 
-const Profile = ({ profile }) => {
+const Profile = ({ profile, status, updateStatus }) => {
   return (
     <div>
       <div>
@@ -17,9 +18,13 @@ const Profile = ({ profile }) => {
         />
         <div className={styles.userProfileData}>
           <p>Name: {profile.name}</p>
-          <p>Status: {profile.status}</p>
           <p>County: {profile.location.country}</p>
           <p>City: {profile.location.city}</p>
+          <Status
+            profile={profile}
+            status={status}
+            updateStatus={updateStatus}
+          />
         </div>
       </div>
 
