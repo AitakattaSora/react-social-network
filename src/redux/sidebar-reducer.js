@@ -5,6 +5,7 @@ const initialState = {
     { id: 3, name: 'Bob' },
   ],
   links: [
+    { id: 0, title: 'Login', to: '/login' },
     { id: 1, title: 'Profile', to: '/profile' },
     { id: 2, title: 'Messages', to: '/dialogs' },
     { id: 3, title: 'News', to: '/news' },
