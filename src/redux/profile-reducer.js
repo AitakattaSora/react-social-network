@@ -1,14 +1,12 @@
 import { profileAPI } from '../api/api';
 
 const ADD_POST = 'ADD_POST';
-const UPDATE_POST_INPUT_FIELD = 'UPDATE_POST_INPUT_FIELD';
 const SET_POSTS_DATA = 'SET_POSTS_DATA';
 const SET_USER_PROFILE = 'SET_USER_PROFILE';
 const UPDATE_STATUS = 'UPDATE_STATUS';
 
 const initialState = {
   posts: [],
-  newPostText: '',
   profile: null,
   status: '',
 };
@@ -17,23 +15,18 @@ const profileReducer = (state = initialState, action) => {
   // Function should be pure
   // We can't change existing object, so we make its copy
   switch (action.type) {
-    case UPDATE_POST_INPUT_FIELD: {
-      return {
-        ...state,
-        newPostText: action.body,
-      };
-    }
-
     case ADD_POST: {
-      const post = {
-        id: state.posts.length + 1,
-        post: state.newPostText,
-        likesCount: 0,
-      };
       return {
         ...state,
         newPostText: '',
-        posts: [...state.posts, post],
+        posts: [
+          ...state.posts,
+          {
+            id: state.posts.length + 1,
+            post: action.post,
+            likesCount: 0,
+          },
+        ],
       };
     }
 
@@ -64,11 +57,7 @@ const profileReducer = (state = initialState, action) => {
 };
 
 // Action creators
-export const addPost = () => ({ type: ADD_POST });
-export const updatePostInputField = (text) => ({
-  type: UPDATE_POST_INPUT_FIELD,
-  body: text,
-});
+export const addPost = (post) => ({ type: ADD_POST, post });
 export const setPostsData = (postsData) => ({
   type: SET_POSTS_DATA,
   postsData,

@@ -1,8 +1,11 @@
 import React from 'react';
 
 const ActionButton = (props) => {
+  const type = props.type ? props.type : 'submit';
+
   return (
     <button
+      type={type}
       disabled={props.isFetching}
       style={{
         cursor: 'pointer',

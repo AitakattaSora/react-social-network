@@ -1,11 +1,23 @@
 .header {
-  grid-area: h; /* псевдоним блока для грида */
-  background: #36465D;
+  grid-area: h;
+  background: #36465d;
   background-repeat: space;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header button {
+  margin-right: 20px;
+}
+
+.header span {
+  font-size: 20px;
+  color: white;
+  margin-right: 100px;
 }
 
 .header img {
   width: 40px;
-  margin-top: 10px;
   margin-left: 10px;
 }

@@ -1,0 +1,13 @@
+.loginFormContainer {
+  display: flex;
+  justify-content: center;
+  margin-top: 70px;
+  font-size: 15px;
+}
+
+.error {
+  margin-top: 3px;
+  margin-bottom: 5px;
+  font-size: 13px;
+  color: red;
+}

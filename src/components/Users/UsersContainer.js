@@ -3,6 +3,8 @@ import { connect } from 'react-redux';
 import { followUser, unfollowUser, getUsers } from '../../redux/users-reducer';
 import Users from './Users';
 import DefaultLoader from '../common/loaders/DefaultLoader';
+import { compose } from 'redux';
+import { withAuthRedirect } from '../hoc/withAuthRedirect';
 
 /**
  * Now there are 2 container components and 1 functional
@@ -65,8 +67,12 @@ const mapStateToProps = (state) => {
 };
 
 // First container component
-export default connect(mapStateToProps, {
-  getUsers,
-  followUser,
-  unfollowUser,
-})(UsersContainer);
+
+export default compose(
+  connect(mapStateToProps, {
+    getUsers,
+    followUser,
+    unfollowUser,
+  }),
+  withAuthRedirect
+)(UsersContainer);
