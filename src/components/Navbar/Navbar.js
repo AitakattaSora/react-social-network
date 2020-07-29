@@ -1,9 +1,10 @@
 import React from 'react';
 import styles from './Navbar.module.css';
 import { NavLink } from 'react-router-dom';
+import { connect } from 'react-redux';
 
 const Navbar = (props) => {
-  const state = props.store.getState().sidebar;
+  const state = props.sidebar;
 
   const friends = state.friends.map((friend) => {
     return <li key={friend.id}> {friend.name} </li>;
@@ -30,4 +31,10 @@ const Navbar = (props) => {
   );
 };
 
-export default Navbar;
+const mapStateToProps = (state) => {
+  return {
+    sidebar: state.sidebar,
+  };
+};
+
+export default connect(mapStateToProps, {})(Navbar);

@@ -36,14 +36,15 @@ const setUserAuthData = ({ id, login, email }, isAuth) => ({
 
 // Thunks
 export const getUserAuthData = () => (dispatch) => {
-  AuthAPI.me().then(({ data }) => {
+  // we return a promise here to be able to access the api call result in app-reducer
+  return AuthAPI.me().then(({ data }) => {
     if (data.resultCode === 0) {
       dispatch(setUserAuthData(data.data, true));
     }
   });
 };
 
-export const login = (email, password, rememberMe) => (dispatch) => {
+export const login = (email, password, rememberMe = false) => (dispatch) => {
   AuthAPI.login(email, password, rememberMe).then((res) => {
     if (res.data.resultCode === 0) {
       dispatch(getUserAuthData());

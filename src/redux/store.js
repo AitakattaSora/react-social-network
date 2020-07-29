@@ -5,6 +5,7 @@ import profileReducer from './profile-reducer';
 import usersReducer from './users-reducer';
 import thunk from 'redux-thunk';
 import { authReducer } from './auth-reducer';
+import { appReducer } from './app-reducer';
 // import logger from 'redux-logger';
 
 // This is basically old-store, but using redux
@@ -14,6 +15,7 @@ const reducers = combineReducers({
   usersPage: usersReducer,
   sidebar: sidebarReducer,
   auth: authReducer,
+  app: appReducer,
 });
 
 const store = createStore(reducers, applyMiddleware(thunk));

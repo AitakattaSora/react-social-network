@@ -36,7 +36,7 @@ const Login = (props) => {
         onSubmit={(data, { resetForm }) => {
           const { login, password, remember } = data;
           props.login(login, password, remember);
-          resetForm();
+          // resetForm();
         }}
       >
         {({ errors, touched }) => (
