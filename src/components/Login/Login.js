@@ -3,7 +3,7 @@ import { Formik, Form, Field } from 'formik';
 import * as yup from 'yup';
 import styles from './Login.module.css';
 import { connect } from 'react-redux';
-import { login } from '../../redux/auth-reducer';
+import { login } from '../../redux/reducers/auth-reducer';
 import { Redirect } from 'react-router-dom';
 
 const LoginSchema = yup.object().shape({

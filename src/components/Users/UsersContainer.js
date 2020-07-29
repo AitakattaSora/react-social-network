@@ -1,10 +1,22 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { followUser, unfollowUser, getUsers } from '../../redux/users-reducer';
+import {
+  followUser,
+  unfollowUser,
+  getUsers,
+} from '../../redux/reducers/users-reducer';
 import Users from './Users';
 import DefaultLoader from '../common/loaders/DefaultLoader';
 import { compose } from 'redux';
 import { withAuthRedirect } from '../hoc/withAuthRedirect';
+import {
+  getUsersSelector,
+  getPageSize,
+  getTotalPages,
+  getCurrentPage,
+  getIsFetching,
+  getIsFollowing,
+} from '../../redux/selectors/users-selectors';
 
 /**
  * Now there are 2 container components and 1 functional
@@ -56,13 +68,13 @@ class UsersContainer extends React.Component {
 
 const mapStateToProps = (state) => {
   return {
-    users: state.usersPage.users,
-    pageSize: state.usersPage.pageSize,
-    totalPages: state.usersPage.totalPages,
-    totalUsersCount: state.usersPage.totalUsersCount,
-    currentPage: state.usersPage.currentPage,
-    isFetching: state.usersPage.isFetching,
-    isFollowing: state.usersPage.isFollowing,
+    users: getUsersSelector(state),
+    pageSize: getPageSize(state),
+    totalPages: getTotalPages(state),
+    totalUsersCount: getTotalPages(state),
+    currentPage: getCurrentPage(state),
+    isFetching: getIsFetching(state),
+    isFollowing: getIsFollowing(state),
   };
 };
 

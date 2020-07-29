@@ -12,7 +12,7 @@ import { compose } from 'redux';
 import { connect } from 'react-redux';
 import DefaultLoader from './components/common/loaders/DefaultLoader';
 import styles from './AppLoader.module.css';
-import { initialize } from './redux/app-reducer';
+import { initialize } from './redux/reducers/app-reducer';
 
 class App extends React.Component {
   componentDidMount() {

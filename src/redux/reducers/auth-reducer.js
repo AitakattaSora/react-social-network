@@ -1,4 +1,4 @@
-import { AuthAPI } from '../api/api';
+import { AuthAPI } from '../../api/api';
 
 const AUTH_ME = 'AUTH_ME';
 

@@ -6,7 +6,7 @@ import {
   getProfile,
   updateStatus,
   getStatus,
-} from '../../redux/profile-reducer';
+} from '../../redux/reducers/profile-reducer';
 import DefaultLoader from '../common/loaders/DefaultLoader';
 import { withRouter } from 'react-router-dom';
 import { compose } from 'redux';

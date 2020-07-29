@@ -3,7 +3,7 @@ import {
   addPost,
   setPostsData,
   getPosts,
-} from '../../../redux/profile-reducer';
+} from '../../../redux/reducers/profile-reducer';
 import MyPosts from './MyPosts';
 import { connect } from 'react-redux';
 
