@@ -1,69 +1,58 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useState, useEffect } from 'react';
 
-export default class Status extends Component {
-  state = {
-    editorMode: false,
-    status: this.props.status,
+const StatusWithHooks = (props) => {
+  const [editorMode, setEditorMode] = useState(false);
+  const [status, setStatus] = useState(props.status);
+
+  useEffect(() => {
+    setStatus(props.status);
+  }, [props.status]);
+
+  const enableEditorMode = () => {
+    setEditorMode(true);
   };
 
-  enableEditorMode() {
-    this.setState({
-      editorMode: true,
-    });
-  }
-
-  disableEditorMode = () => {
-    if (!this.state.status) {
+  const disableEditorMode = () => {
+    if (!status) {
       alert('Status cannot be empty');
       return;
     }
-    this.setState({
-      editorMode: false,
-    });
-    this.props.updateStatus(this.props.profile.id, this.state.status);
+    setEditorMode(false);
+    props.updateStatus(props.profile.id, status);
   };
 
-  onChangeHanlder = (e) => {
-    this.setState({
-      status: e.target.value,
-    });
+  const onChangeHanlder = (e) => {
+    setStatus(e.target.value);
   };
 
-  componentDidUpdate(prevProps, prevState) {
-    if (prevProps.status !== this.props.status) {
-      this.setState({
-        status: this.props.status,
-      });
-    }
-  }
+  return (
+    <div
+      style={{
+        marginTop: 10,
+      }}
+    >
+      {!editorMode ? (
+        <div
+          style={{
+            fontStyle: 'italic',
+          }}
+          onDoubleClick={enableEditorMode}
+        >
+          <span>{status}</span>
+        </div>
+      ) : (
+        <div onBlur={disableEditorMode}>
+          <input
+            type='text'
+            onChange={onChangeHanlder}
+            autoFocus
+            value={status}
+          />
+        </div>
+      )}
+    </div>
+  );
+};
 
-  render() {
-    return (
-      <div
-        style={{
-          marginTop: 10,
-        }}
-      >
-        {!this.state.editorMode ? (
-          <div
-            style={{
-              fontStyle: 'italic',
-            }}
-            onDoubleClick={this.enableEditorMode.bind(this)}
-          >
-            <span>{this.props.status}</span>
-          </div>
-        ) : (
-          <div onBlur={this.disableEditorMode}>
-            <input
-              type='text'
-              onChange={this.onChangeHanlder}
-              autoFocus
-              value={this.state.status}
-            />
-          </div>
-        )}
-      </div>
-    );
-  }
-}
+export default StatusWithHooks;
