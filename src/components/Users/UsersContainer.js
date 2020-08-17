@@ -8,7 +8,7 @@ import {
 import Users from './Users';
 import DefaultLoader from '../common/loaders/DefaultLoader';
 import { compose } from 'redux';
-import { withAuthRedirect } from '../hoc/withAuthRedirect';
+// import { withAuthRedirect } from '../hoc/withAuthRedirect';
 import {
   getUsersSelector,
   getPageSize,
@@ -85,6 +85,6 @@ export default compose(
     getUsers,
     followUser,
     unfollowUser,
-  }),
-  withAuthRedirect
+  })
+  // withAuthRedirect
 )(UsersContainer);
